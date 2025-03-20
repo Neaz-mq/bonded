@@ -69,6 +69,12 @@
 
 
 @layer base {
+  html {
+    @apply bg-background text-foreground;
+  }
+  .dark {
+    @apply bg-background text-foreground;
+  }
   * {
     @apply border-border;
   }

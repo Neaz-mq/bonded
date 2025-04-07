@@ -59,10 +59,12 @@ export default function RootLayout({
           >
            <div className="min-h-screen">
             <Navbar></Navbar>
-            <main>
-               
-            </main>
-           {children}
+            <main className="py-8">
+               {/* container to center the content */}
+               <div className="max-w-7xl mx-auto px-4">
+               </div>
+            {children}
+            </main>       
            </div>
           </ThemeProvider>
         </body>

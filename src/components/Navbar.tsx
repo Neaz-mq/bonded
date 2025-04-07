@@ -1,7 +1,8 @@
-import { Link } from 'lucide-react'
+
 import React from 'react'
 import DesktopNavbar from './DesktopNavbar'
 import MobileNavbar from './MobileNavbar'
+import Link from 'next/link'
 
 function Navbar() {
   return (

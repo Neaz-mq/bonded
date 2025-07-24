@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { Toaster } from "react-hot-toast";
+import ThemeInitializer from "@/components/ThemeInitializer"; // import the new client component
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,56 +26,40 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-   <ClerkProvider>
-  <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-    <head>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              let theme = localStorage.getItem('theme');
-              if (!theme) {
-                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-              }
-              if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-              } else {
-                document.documentElement.classList.remove('dark');
-              }
-            })();
-          `,
-        }}
-      />
-    </head>
-    <body className="antialiased">
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        suppressHydrationWarning
       >
-        <div className="min-h-screen">
-          <Navbar />
-          <main className="py-8">
-            <div className="max-w-7xl mx-auto px-4">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div className="hidden lg:block lg:col-span-3">
-                  <Sidebar />
+        <head />
+        <body className="antialiased">
+          <ThemeInitializer /> {/* client-only theme setup */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="min-h-screen">
+              <Navbar />
+              <main className="py-8">
+                <div className="max-w-7xl mx-auto px-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div className="hidden lg:block lg:col-span-3">
+                      <Sidebar />
+                    </div>
+                    <div className="lg:col-span-9">{children}</div>
+                  </div>
                 </div>
-                <div className="lg:col-span-9">{children}</div>
-              </div>
+              </main>
             </div>
-          </main>
-        </div>
-        <Toaster />
-      </ThemeProvider>
-    </body>
-  </html>
-</ClerkProvider>
-
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -7,15 +7,15 @@ import {
 import { notFound } from "next/navigation";
 import ProfilePageClient from "./ProfilePageClient";
 
-// ✅ Define the PageProps interface correctly
-interface PageProps {
+// ✅ Type for params expected by Next.js
+export type ProfilePageProps = {
   params: {
     username: string;
   };
-}
+};
 
-// ✅ Correctly typed generateMetadata function
-export async function generateMetadata({ params }: PageProps) {
+// ✅ Correctly typed `generateMetadata`
+export async function generateMetadata({ params }: ProfilePageProps) {
   const user = await getProfileByUsername(params.username);
   if (!user) return;
 
@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-// ✅ Correctly typed default exported page component
-const ProfilePageServer = async ({ params }: PageProps) => {
+// ✅ DEFAULT EXPORT: must be declared as `async function` and exported directly
+export default async function ProfilePage({ params }: ProfilePageProps) {
   const user = await getProfileByUsername(params.username);
 
   if (!user) notFound();
@@ -45,6 +45,4 @@ const ProfilePageServer = async ({ params }: PageProps) => {
       isFollowing={isCurrentUserFollowing}
     />
   );
-};
-
-export default ProfilePageServer;
+}

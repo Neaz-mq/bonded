@@ -184,7 +184,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "c:\\Projects\\bonded\\src\\generated\\prisma",
+      "value": "C:\\projects\\bonded\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -198,7 +198,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "c:\\Projects\\bonded\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\projects\\bonded\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -212,12 +212,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://neondb_owner:npg_2TUeZPq5XwEy@ep-super-night-a4hw7uol-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
       }
     }
   },
